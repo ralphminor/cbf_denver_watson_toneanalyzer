@@ -8,3 +8,8 @@ From IBM: Tone Analyzer leverages cognitive linguistic analysis to identify a va
 #### Technologies
 - IBM Bluemix / Watson API - Tone Anlayzer Service
 - Python
+
+### Requirements
+You will need to touch a .env file and add your Bluemix / Watson Tone Analyzer credentials to that file in order for the API calls to work.  Format of the .env file should be:
+TONE_USERNAME="...YOUR USERNAME HERE..."
+TONE_PASSWORD="...YOUR PASSWORD HERE..."
