@@ -29,7 +29,14 @@ def parse_toneanalyzer_response(json_data):
     -------
     dict : a {dict} whose keys are emotion ids and values are their corresponding score.
     """
-    pass
+    emotions = {}
+    for entry in json_data['document_tone']['tone_categories']:
+        if entry['category_id'] == 'emotion_tone':
+            for emotion in entry['tones']:
+                emotion_key = emotion['tone_name']
+                emotion_value = emotion['score']
+                emotions[emotion_key] = emotion_value
+    return(emotions)
 
 
 if __name__ == '__main__':
@@ -49,7 +56,9 @@ if __name__ == '__main__':
         json_response = tone_analyzer.tone(text=input_content)
 
         # dumping the raw JSON response
-        print(json.dumps(json_response, indent=2))
+        # print(json.dumps(json_response, indent=2))
 
         # printing the result from the parsing function
-        print(parse_toneanalyzer_response(json_response))
+        emotes = parse_toneanalyzer_response(json_response)
+        for x in emotes:
+          print("The score for %s is %s." % (x, emotes[x]))
